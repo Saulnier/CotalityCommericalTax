@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cotality — Commercial Tax</title>
+<title>Cotality — Tax</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root {
@@ -14,7 +14,6 @@
   --green: #1A7A4A; --green-light: #EAF4EE;
   --amber: #B45309; --amber-light: #FEF3C7;
   --red: #B91C1C; --red-light: #FEE2E2;
-  --blue: #1D4ED8; --blue-light: #EEF2FF;
   --radius: 12px; --shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,28 +34,34 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .t-stat .sl { font-size: 0.62rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.4px; }
 .info-alert { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 11px 16px; border-radius: var(--radius); font-size: 0.83rem; color: var(--primary); margin-bottom: 14px; }
 .info-alert strong { font-weight: 600; }
+.alert-red { background: var(--red-light); border-left: 4px solid var(--red); padding: 11px 16px; border-radius: var(--radius); font-size: 0.83rem; color: var(--red); margin-bottom: 14px; }
+.alert-red strong { font-weight: 700; }
 .card { background: var(--white); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); }
 .card-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-dark); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
 label { display: block; font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 5px; }
 input, select { width: 100%; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 13px; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text); background: var(--white); margin-bottom: 14px; transition: border-color 0.15s; outline: none; }
 input:focus, select:focus { border-color: var(--accent); }
+input.ro { background: var(--bg); color: var(--text-muted); cursor: default; }
 .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-@media(max-width:600px){ .g2,.g3{ grid-template-columns:1fr; } }
-.sec { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-dark); margin: 14px 0 12px; display: flex; align-items: center; gap: 8px; }
+.g4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+@media(max-width:600px){ .g2,.g3,.g4{ grid-template-columns:1fr; } }
+.sec { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-dark); margin: 6px 0 12px; display: flex; align-items: center; gap: 8px; }
 .sec::after { content:''; flex:1; height:1px; background: var(--border); }
 .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
-.badge-active { background: var(--green-light); color: var(--green); }
-.badge-pending { background: var(--amber-light); color: var(--amber); }
-/* LIABILITY */
-.liab-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-.liab-btn { flex:1; min-width:110px; padding:9px 10px; border:1.5px solid var(--border); border-radius:8px; font-size:0.76rem; font-weight:600; cursor:pointer; text-align:center; color:var(--text-muted); background:var(--bg); transition:all 0.15s; font-family:'Inter',sans-serif; }
-.liab-btn.sel-cotality { background:var(--red-light); border-color:var(--red); color:var(--red); }
-.liab-btn.sel-client { background:var(--amber-light); border-color:var(--amber); color:var(--amber); }
-.liab-btn.sel-agency { background:var(--blue-light); border-color:var(--blue); color:var(--blue); }
-.liab-btn.sel-none { background:var(--green-light); border-color:var(--green); color:var(--green); }
-.jira-btn { background: var(--primary); color: white; border: none; border-radius: 8px; padding: 11px 22px; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.15s; display: inline-flex; align-items: center; gap: 8px; }
-.jira-btn:hover { background: #1A3A5C; }
+.badge-green  { background: var(--green-light); color: var(--green); }
+.badge-amber  { background: var(--amber-light); color: var(--amber); }
+.badge-red    { background: var(--red-light);   color: var(--red); }
+
+/* Summary chips */
+.chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.chip { flex: 1; min-width: 110px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.chip .cl { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 4px; }
+.chip .cv { font-size: 1rem; font-weight: 700; color: var(--text); }
+.chip.danger .cv { color: var(--red); }
+.chip.warn   .cv { color: var(--amber); }
+.chip.good   .cv { color: var(--green); }
+
 .toast-cont { position: fixed; top: 18px; right: 18px; z-index: 999; }
 .toast { background: var(--primary); color: white; padding: 10px 16px; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 8px; opacity: 0; transform: translateY(-6px); transition: all 0.2s; font-size: 0.82rem; font-weight: 500; }
 .toast.show { opacity: 1; transform: translateY(0); }
@@ -66,85 +71,217 @@ input:focus, select:focus { border-color: var(--accent); }
 <div class="toast-cont" id="tc"></div>
 <div class="wrap">
 
+  <!-- Header -->
   <div class="header">
     <div class="header-left">
       <div class="logo">CTY</div>
-      <div><div class="brand">Cotality</div><div class="brand-sub">Commercial Tax · Agent Script</div></div>
+      <div>
+        <div class="brand">Cotality</div>
+        <div class="brand-sub">Tax · Agent Tool</div>
+      </div>
     </div>
-    <div class="header-right">Session 2 · Mon Apr 20 · 2:00–3:00 PM<br>~50 calls / 90 days · White Glove B2B</div>
+    <div class="header-right">Tax Servicing · DigitalTax Portal<br>Escrow · Delinquency · Payments</div>
   </div>
 
   <div class="info-alert"><strong>ℹ️ Note:</strong> Identity verification, call recording, and transcription are handled automatically by Genesys Cloud before the agent connects.</div>
 
+  <div class="alert-red">⚠️ <strong>Delinquency Alert:</strong> This account has a delinquent tax balance of <strong>$3,812.00</strong> — penalty accrual begins <strong>May 1, 2026</strong>.</div>
+
+  <!-- Ticket -->
   <div class="ticket">
-    <div><div class="ticket-lbl">Case Ticket</div><div class="ticket-num">#CT-84291</div></div>
+    <div>
+      <div class="ticket-lbl">Case Ticket</div>
+      <div class="ticket-num">#TX-48291</div>
+    </div>
     <div class="ticket-stats">
       <div class="t-stat"><div class="sv">Open</div><div class="sl">Status</div></div>
-      <div class="t-stat"><div class="sv">Tax Inquiry</div><div class="sl">Category</div></div>
-      <div class="t-stat"><div class="sv">Apr 20, 2026</div><div class="sl">Date</div></div>
+      <div class="t-stat"><div class="sv">Tax</div><div class="sl">Category</div></div>
+      <div class="t-stat"><div class="sv">Apr 23, 2026</div><div class="sl">Date</div></div>
     </div>
   </div>
 
-  <!-- CUSTOMER INFO -->
+  <!-- Customer Info -->
   <div class="card">
-    <div class="card-title">Customer Account Information</div>
-    <div class="g2">
+    <div class="card-title">Customer Information</div>
+    <div class="g3">
       <div><label>First Name</label><input id="fn" value="Alex"></div>
       <div><label>Last Name</label><input id="ln" value="Johnson"></div>
-      <div><label>Email</label><input id="em" value="alex.johnson@email.com"></div>
-      <div><label>Company / Servicer</label><input id="co" placeholder="Client company name"></div>
+      <div><label>Phone</label><input id="ph" value="303-555-4821"></div>
     </div>
     <div class="g2">
-      <div>
-        <label>Account Status</label>
-        <select id="acctStatus" onchange="updateBadge()">
-          <option value="active" selected>Active</option>
-          <option value="pending">Pending</option>
-          <option value="hold">On Hold</option>
+      <div><label>Email</label><input id="em" value="alex.johnson@email.com"></div>
+      <div><label>Caller Type</label>
+        <select id="callerType">
+          <option selected>Homeowner / Borrower</option>
+          <option>Servicer</option>
+          <option>Lender</option>
+          <option>Internal</option>
         </select>
       </div>
-      <div><label>Account Number</label><input id="acctId" placeholder="CT-########"></div>
     </div>
-    <div id="badgeCont"></div>
+    <div>
+      <label>Mailing Address</label>
+      <input value="214 Birchwood Lane, Denver, CO 80203">
+    </div>
+  </div>
 
-    <div class="sec">Lookup Details</div>
+  <!-- Property Info -->
+  <div class="card">
+    <div class="card-title">Property Information</div>
+    <div class="g2">
+      <div><label>Property Address</label><input value="214 Birchwood Lane, Denver, CO 80203"></div>
+      <div><label>Parcel Number</label><input value="039-214-07812"></div>
+    </div>
     <div class="g3">
-      <div><label>Check Number</label><input id="checkNum" value="CHK-00194822"></div>
-      <div><label>Account Number</label><input id="lookupAcct" value="WMS-00482910"></div>
-      <div><label>Parcel / APN</label><input id="parcel" value="623-04-182"></div>
+      <div><label>County</label><input value="Denver County"></div>
+      <div><label>State</label><input value="Colorado"></div>
+      <div><label>Taxing Authority</label><input value="Denver County Treasurer"></div>
+    </div>
+  </div>
+
+  <!-- Loan & Escrow -->
+  <div class="card">
+    <div class="card-title">Loan &amp; Escrow Details</div>
+
+    <div class="chips">
+      <div class="chip">
+        <div class="cl">Escrow Balance</div>
+        <div class="cv">$1,240.00</div>
+      </div>
+      <div class="chip warn">
+        <div class="cl">Last Disbursement</div>
+        <div class="cv">$2,950.00</div>
+      </div>
+      <div class="chip">
+        <div class="cl">Disbursement Date</div>
+        <div class="cv">Jan 15, 2026</div>
+      </div>
+      <div class="chip danger">
+        <div class="cl">Projected Shortage</div>
+        <div class="cv">$1,710.00</div>
+      </div>
+    </div>
+
+    <div class="g3">
+      <div><label>Loan Number</label><input value="LN-8820041"></div>
+      <div><label>Servicer Name</label><input value="Cotality Loan Services"></div>
+      <div><label>Escrow Account #</label><input value="ESC-004821"></div>
+    </div>
+    <div class="g3">
+      <div><label>Current Escrow Balance</label><input value="$1,240.00"></div>
+      <div><label>Last Disbursement Amount</label><input value="$2,950.00"></div>
+      <div><label>Last Disbursement Date</label><input value="Jan 15, 2026"></div>
     </div>
     <div class="g2">
-      <div><label>Loan Number</label><input id="loanNum" value="LN-00294817"></div>
-      <div><label>Days Until Payment</label><input id="daysUntil" type="number" value="20"></div>
+      <div><label>Projected Shortage</label><input value="$1,710.00"></div>
+      <div><label>Next Tax Payment Due</label><input value="May 1, 2026"></div>
+    </div>
+  </div>
+
+  <!-- Tax Status -->
+  <div class="card">
+    <div class="card-title">Tax Status</div>
+
+    <div class="chips">
+      <div class="chip danger">
+        <div class="cl">Tax Status</div>
+        <div class="cv">Delinquent</div>
+      </div>
+      <div class="chip danger">
+        <div class="cl">Delinquent Amount</div>
+        <div class="cv">$3,812.00</div>
+      </div>
+      <div class="chip danger">
+        <div class="cl">Penalty Date</div>
+        <div class="cv">May 1, 2026</div>
+      </div>
+      <div class="chip">
+        <div class="cl">Tax Year</div>
+        <div class="cv">2025</div>
+      </div>
     </div>
 
-    <div class="sec">Liability Flag</div>
-    <div class="liab-row">
-      <button class="liab-btn" onclick="setLiab(this,'sel-cotality')">🔴 Cotality Action</button>
-      <button class="liab-btn" onclick="setLiab(this,'sel-client')">🟡 Client Failed to Act</button>
-      <button class="liab-btn" onclick="setLiab(this,'sel-agency')">🔵 Tax Agency Issue</button>
-      <button class="liab-btn" onclick="setLiab(this,'sel-none')">🟢 No Fault — Info Only</button>
+    <div class="g3">
+      <div>
+        <label>Tax Status</label>
+        <select id="taxStatus" onchange="updateBadge()">
+          <option value="current">Current</option>
+          <option value="delinquent" selected>Delinquent</option>
+          <option value="shortage">Escrow Shortage</option>
+          <option value="pending">Payment Pending</option>
+          <option value="exempt">Tax Exempt</option>
+        </select>
+      </div>
+      <div><label>Delinquent Amount</label><input value="$3,812.00"></div>
+      <div><label>Penalty Accrual Date</label><input value="May 1, 2026"></div>
+    </div>
+    <div class="g3">
+      <div><label>Tax Year</label><input value="2025"></div>
+      <div><label>Annual Tax Amount</label><input value="$5,900.00"></div>
+      <div><label>Installments</label>
+        <select>
+          <option>Semi-Annual</option>
+          <option selected>Annual</option>
+          <option>Quarterly</option>
+        </select>
+      </div>
     </div>
 
-    <button class="jira-btn" onclick="toast('Jira ticket created ✓')">🔗 Create Jira Ticket</button>
+    <div id="badgeCont"></div>
+
+    <div class="sec">DigitalTax Portal</div>
+    <div class="g2">
+      <div><label>Portal Last Updated</label><input class="ro" value="Apr 23, 2026 — 08:14 AM" readonly></div>
+      <div><label>Connected Taxing Authorities</label><input class="ro" value="22,000+ nationwide" readonly></div>
+    </div>
+    <div class="g2">
+      <div><label>Delinquency Letter Status</label>
+        <select>
+          <option selected>Pending Agent Review</option>
+          <option>Approved — Sent</option>
+          <option>On Hold</option>
+        </select>
+      </div>
+      <div><label>Payment Initiated</label>
+        <select>
+          <option selected>No</option>
+          <option>Yes — Processing</option>
+          <option>Yes — Confirmed</option>
+        </select>
+      </div>
+    </div>
   </div>
 
 </div>
 <script>
-const qp=new URLSearchParams(window.location.search);
-function qpOr(k,d){const v=qp.get(k);return v&&v.trim()?v:d;}
-document.getElementById('fn').value=qpOr('firstName','Alex');
-document.getElementById('ln').value=qpOr('lastName','Johnson');
-document.getElementById('em').value=qpOr('email','alex.johnson@email.com');
-function updateBadge(){
-  const v=document.getElementById('acctStatus').value;
-  const m={active:['badge-active','✅ Active'],pending:['badge-pending','◑ Pending'],hold:['badge-pending','⏸ On Hold']};
-  const b=m[v];document.getElementById('badgeCont').innerHTML=b?`<span class="badge ${b[0]}">${b[1]}</span>`:'';
+const qp = new URLSearchParams(window.location.search);
+function qpOr(k, d) { const v = qp.get(k); return v && v.trim() ? v : d; }
+document.getElementById('fn').value = qpOr('firstName', 'Alex');
+document.getElementById('ln').value = qpOr('lastName', 'Johnson');
+document.getElementById('em').value = qpOr('email', 'alex.johnson@email.com');
+
+function updateBadge() {
+  const v = document.getElementById('taxStatus').value;
+  const m = {
+    current:    ['badge-green', '✅ Current'],
+    delinquent: ['badge-red',   '🚨 Delinquent'],
+    shortage:   ['badge-amber', '⚠️ Escrow Shortage'],
+    pending:    ['badge-amber', '◑ Payment Pending'],
+    exempt:     ['badge-green', '✅ Tax Exempt'],
+  };
+  const b = m[v];
+  document.getElementById('badgeCont').innerHTML = b
+    ? `<span class="badge ${b[0]}">${b[1]}</span>` : '';
 }
 updateBadge();
-function setLiab(el,cls){document.querySelectorAll('.liab-btn').forEach(b=>b.classList.remove('sel-cotality','sel-client','sel-agency','sel-none'));el.classList.add(cls);toast('Liability flagged');}
-function toast(msg){const c=document.getElementById('tc');const t=document.createElement('div');t.className='toast';t.textContent=msg;c.appendChild(t);requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),250);},3000);}
-window.updateBadge=updateBadge;window.setLiab=setLiab;window.toast=toast;
+
+function toast(msg) {
+  const c = document.getElementById('tc');
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg; c.appendChild(t);
+  requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 250); }, 3000);
+}
 </script>
 </body>
 </html>
